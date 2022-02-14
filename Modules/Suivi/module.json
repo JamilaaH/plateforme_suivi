@@ -1,0 +1,13 @@
+{
+    "name": "Suivi",
+    "alias": "suivi",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Suivi\\Providers\\SuiviServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

@@ -4,8 +4,9 @@ namespace Modules\Suivi\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
-class SuiviDatabaseSeeder extends Seeder
+class SeanceCoachTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,12 +16,11 @@ class SuiviDatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
-        $this->call([
-            EvenementTableSeeder::class,
-            EvenementTypeTableSeeder::class,
-            EtapeTableSeeder::class,
-            SeanceTableSeeder::class,
-            SeanceCoachTableSeeder::class,
+        DB::table('seance_coach')->insert([
+            [
+                'seance_id'=> 10,
+                'user_id'=>3,    
+            ]
 
         ]);
         // $this->call("OthersTableSeeder");

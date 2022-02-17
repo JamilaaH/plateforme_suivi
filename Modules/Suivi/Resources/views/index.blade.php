@@ -1,9 +1,4 @@
-@extends('suivi::layouts.master')
+<x-guest-layout>
+    @dump($model)
 
-@section('content')
-    <h1>Hello World</h1>
-
-    <p>
-        This view is loaded from module: {!! config('suivi.name') !!}
-    </p>
-@endsection
+</x-guest-layout>

@@ -11,6 +11,13 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+use Modules\Suivi\Entities\Candidat;
+
 Route::prefix('suivi')->group(function() {
-    Route::get('/', 'SuiviController@index');
+    Route::get('/dashboard', 'SuiviController@index')->name('home')->middleware(['auth']);
+    Route::get('/test', function() {
+        $model = Candidat::all();
+        return view('suivi::index', compact('model'));
+    });
 });

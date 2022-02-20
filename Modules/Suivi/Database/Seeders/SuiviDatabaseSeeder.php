@@ -21,7 +21,7 @@ class SuiviDatabaseSeeder extends Seeder
             EtapeTableSeeder::class,
             SeanceTableSeeder::class,
             SeanceCoachTableSeeder::class,
-
+            SeanceCandidatTableSeeder::class,
         ]);
         // $this->call("OthersTableSeeder");
     }

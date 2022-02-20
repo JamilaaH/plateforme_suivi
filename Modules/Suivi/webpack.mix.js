@@ -7,7 +7,8 @@ require('laravel-mix-merge-manifest');
 mix.setPublicPath('../../public').mergeManifest();
 
 mix.js(__dirname + '/Resources/assets/js/app.js', 'js/suivi.js')
-    .sass( __dirname + '/Resources/assets/sass/app.scss', 'css/suivi.css');
+    // .sass( __dirname + '/Resources/assets/sass/app.scss', 'css/suivi.css')
+    .css(__dirname + '/Resources/assets/css/style.css', 'public/css/style.css');
 
 if (mix.inProduction()) {
     mix.version();

@@ -27,6 +27,7 @@ class CreateSeancesTable extends Migration
             $table->foreign('evenement_type_id')->references('id')->on('evenement_types')->onDelete('RESTRICT')->onUpdate('RESTRICT');
             $table->unsignedBigInteger('etape_id');
             $table->foreign('etape_id')->references('id')->on('etapes')->onDelete('RESTRICT')->onUpdate('RESTRICT');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

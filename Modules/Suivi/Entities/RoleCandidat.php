@@ -5,19 +5,14 @@ namespace Modules\Suivi\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class CandidatInfo extends Model
+class RoleCandidat extends Model
 {
     use HasFactory;
 
     protected $fillable = [];
-    
+    protected $table = "role_candidat";
     protected static function newFactory()
     {
-        return \Modules\Suivi\Database\factories\CandidatInfoFactory::new();
-    }
-
-    public function candidat()
-    {
-        return $this->belongsTo(Candidat::class);
+        return \Modules\Suivi\Database\factories\RoleCandidatFactory::new();
     }
 }

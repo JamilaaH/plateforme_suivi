@@ -7,13 +7,14 @@
         <div class="flex space-x-3">
             @if (count($parcours) == 0)
                 <h3 class="font-semibold text-lg tracking-wide">Nouvelle Séance </h3>
-                <form action="{{ route('seance.create', $view) }}" method="get">
+                <form action="{{ route('seance.createSeance', $view) }}" method="get">
                     @csrf
                     <button
                         class="bg-blue-600 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-red-700"
                         type="submit"><i class="fas fa-plus"></i> </button>
                 </form>
-                <form action="" method="post">
+            
+                <form action="{{route('evenementtype.destroy', $view)}}" method="post">
                     @csrf
                     @method('DELETE')
                     <button type="submit"
@@ -48,10 +49,10 @@
                 </h3>
             </div>
             <div>
-                <a href="{{ route('event.etudiants', $item->id) }}"><button
+                <a href="{{ route('seance.etudiants', $item->id) }}"><button
                         class="bg-purple-600 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-purple-700">Etudiants</button></a>
             </div>
-            <form action=" {{ route('event.update', $item->id) }}" method="POST" class="ml-2">
+            <form action=" {{ route('seance.update', $item->id) }}" method="POST" class="ml-2">
                 @csrf
                 @method("PUT")
                 <button

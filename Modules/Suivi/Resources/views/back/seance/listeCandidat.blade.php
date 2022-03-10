@@ -10,9 +10,9 @@
                     <a href="{{ route('seance.edit', $seance->id) }}"
                         class="bg-green-600 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-red-700">edit</a>
                 @endif
-                <a href="{{ route('event.index') }}"><button
+                <a href="{{ route('seance.index') }}"><button
                         class="bg-purple-600 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-purple-700">Retour</button></a>
-                <form action="{{ route('event.update', $seance->id) }}" method="POST" class="flex">
+                <form action="{{ route('seance.update', $seance->id) }}" method="POST" class="flex">
                     @csrf
                     @method("PUT")
                     <button
@@ -65,10 +65,10 @@
                                             </div>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap">
-                                            {{-- @switch($item->presence)
+                                            @switch($item->presence)
                                                 @case(0)
                                                     <form
-                                                        action="{{ route('event.update.presence', [$item->user_id, $seance->id]) }}"
+                                                        action="{{ route('seance.presence', [$item->candidat_id, $seance->id]) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method("PUT")
@@ -83,7 +83,7 @@
                                                 @break
                                                 @case(1)
                                                     <form
-                                                        action="{{ route('event.update.presence', [$item->user_id, $seance->id]) }}"
+                                                        action="{{ route('seance.presence', [$item->candidat_id, $seance->id]) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method("PUT")
@@ -96,15 +96,13 @@
                                                     </form>
                                                 @break
                                                 @default
-                                            @endswitch --}}
-                                                    present
+                                            @endswitch
                                         </td>
                                         <td class="py-4 whitespace-nowrap text-sm font-medium">
-                                            show
-                                            {{-- <a href="{{ route('etudiant.show', $item->user_id) }}"><button
+                                            <a href="{{ route('etudiant.show', $item->candidat_id) }}"><button
                                                     class="mx-3 bg-white text-gray-800 font-bold rounded border-b-2 border-purple-500 hover:border-purple-600 hover:bg-purple-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center"><i
                                                         class="fas fa-eye pr-5"></i>Voir</button>
-                                            </a> --}}
+                                            </a>
                                             @if ($seance->etape->nom == 'interview' && $item->presence == 1 && $item->inscrit == 1)
                                                 <button
                                                     class="modal-open mx-3 bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-600 hover:text-white shadow-md py-2 px-6 inline-flex items-center">Inviter
@@ -148,7 +146,7 @@
                                                                 </div>
                                                             </div>
                                                             <form
-                                                                action="{{ route('event.invitation_week', $item->user) }}"
+                                                                action="}"
                                                                 method="POST">
                                                                 @csrf
                                                                 @method("PUT")

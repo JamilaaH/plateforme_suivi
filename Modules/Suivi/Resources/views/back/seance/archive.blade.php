@@ -18,7 +18,7 @@
                 <a href=""><button class="bg-purple-600 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-purple-700" type="submit">Etudiants</button></a>
                 <p> {{$item->max - $item->limite}} / {{$item->max}}    </p>
             </div>
-            <form action="{{route('event.update', $item->id)}}" method="POST" class="ml-2">
+            <form action="{{route('seance.update', $item->id)}}" method="POST" class="ml-2">
                 @csrf
                 @method("PUT")
                 <button class="bg-green-600 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-red-700" type="submit">publier</button>

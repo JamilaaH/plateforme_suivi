@@ -5,7 +5,7 @@ namespace Modules\Suivi\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class CandidatInfo extends Model
+class Genre extends Model
 {
     use HasFactory;
 
@@ -13,11 +13,10 @@ class CandidatInfo extends Model
     
     protected static function newFactory()
     {
-        return \Modules\Suivi\Database\factories\CandidatInfoFactory::new();
+        return \Modules\Suivi\Database\factories\GenreFactory::new();
     }
-
-    public function candidat()
+    public function candidats()
     {
-        return $this->belongsTo(Candidat::class);
+        return $this->hasMany(Candidat::class);
     }
 }

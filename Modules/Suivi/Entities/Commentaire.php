@@ -2,10 +2,11 @@
 
 namespace Modules\Suivi\Entities;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class CandidatInfo extends Model
+class Commentaire extends Model
 {
     use HasFactory;
 
@@ -13,11 +14,12 @@ class CandidatInfo extends Model
     
     protected static function newFactory()
     {
-        return \Modules\Suivi\Database\factories\CandidatInfoFactory::new();
+        return \Modules\Suivi\Database\factories\CommentaireFactory::new();
     }
-
-    public function candidat()
-    {
+    public function auteur() {
+        return $this->belongsTo(User::class);
+    }
+    public function candidat() {
         return $this->belongsTo(Candidat::class);
     }
 }

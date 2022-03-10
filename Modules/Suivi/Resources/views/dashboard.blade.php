@@ -1,12 +1,12 @@
 @extends('suivi::layouts.app')
 
 @section('slot')
-    <div class="flex justify-around w-100 space-y-2">
-        <div class="pl-1 w-96 h-20 bg-green-400 rounded-lg shadow-md m-3">
+    <div class="flex justify-around align-center w-100 p-5 space-y-2">
+        <div class="pl-1 w-96 h-70 bg-green-400 rounded-lg shadow-md m-3">
             <div class="flex w-full h-full py-2 px-4 bg-white rounded-lg justify-between">
                 <div class="my-auto">
-                    <p class="font-bold">Séances</p>
-                    <p class="text-lg">voir</p>
+                    <p class="font-bold">{{$seances}} séances en cours</p>
+                    <a href="{{route('seance.index')}}" class="text-lg">voir</a>
                 </div>
                 <div class="my-auto">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -15,11 +15,11 @@
                 </div>
             </div>
         </div>
-        <div class="pl-1 w-96 h-20 bg-red-400 rounded-lg shadow-md m-3">
+        <div class="pl-1 w-96 h-70 bg-red-400 rounded-lg shadow-md m-3">
             <div class="flex w-full h-full py-2 px-4 bg-white rounded-lg justify-between">
                 <div class="my-auto">
-                    <p class="font-bold">Candidats</p>
-                    <p class="text-lg">voir</p>
+                    <p class="font-bold">{{$candidats}} candidats</p>
+                    <a href="{{route('etudiant.index')}}" class="text-lg">voir</a>
                 </div>
                 <div class="my-auto">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-lines-fill" viewBox="0 0 16 16">

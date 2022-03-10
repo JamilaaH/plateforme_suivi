@@ -27,7 +27,7 @@ class SeanceController extends Controller
         $type_event = EvenementType::all();
         $view = 'all';
         $pages = 'visible';
-        return view('suivi::back.event.index',compact('parcours','type_event','view', 'pages'));
+        return view('suivi::back.seance.index',compact('parcours','type_event','view', 'pages'));
     }
     //trier par évemenent type 
     public function index_tri($item)
@@ -36,7 +36,7 @@ class SeanceController extends Controller
         $type_event = EvenementType::all();
         $view = $item;
         $pages = 'visible';
-        return view('suivi::back.event.index', compact('parcours','type_event','view', 'pages'));
+        return view('suivi::back.seance.index', compact('parcours','type_event','view', 'pages'));
     }
 
     //voir les archives et trier 
@@ -47,7 +47,7 @@ class SeanceController extends Controller
         $view = 'all';
         $pages = 'archives';
         // return dd($pages);
-        return view('suivi::back.event.archive', compact('parcours','type_event','view', 'pages'));
+        return view('suivi::back.seance.archive', compact('parcours','type_event','view', 'pages'));
     }
 
     public function archive_tri($item)
@@ -56,7 +56,7 @@ class SeanceController extends Controller
         $type_event = EvenementType::withTrashed()->get();
         $view = $item;
         $pages = 'archives';
-        return view('suivi::back.event.archive', compact('parcours','type_event','view', 'pages'));
+        return view('suivi::back.seance.archive', compact('parcours','type_event','view', 'pages'));
     }
 
     //archiver une séance ou le remettre visible
@@ -67,7 +67,7 @@ class SeanceController extends Controller
             case '1':
                 $seance->etat = 0;
                 $seance->save();
-                return redirect()->route('event.index')->with('warning', "La séance a été archivé");        
+                return redirect()->route('seance.index')->with('warning', "La séance a été archivé");        
                 break;
             case '0':
                 $type = $seance->evenement_type;
@@ -76,7 +76,7 @@ class SeanceController extends Controller
                 }
                 $seance->etat = 1;
                 $seance->save();
-                return redirect()->route('event.index')->with('success', "La séance est public");        
+                return redirect()->route('seance.index')->with('success', "La séance est public");        
                 break;
             default:
                 break;
@@ -101,7 +101,7 @@ class SeanceController extends Controller
     public function create()
     {
         $formations = Evenement::all();
-        return view('suivi::back.event.create', compact('formations'));
+        return view('suivi::back.seance.create', compact('formations'));
     }
 
     public function createSecondStep(Request $request)
@@ -110,7 +110,7 @@ class SeanceController extends Controller
         if ($request->type == 1) {
             $coachs = User::all()->where('role_id', 2);
             $etapes = Etape::where('evenement_id', $request->type)->get();
-            return view('suivi::back.event.createSchool', compact('etapes','coachs'));
+            return view('suivi::back.seance.createSchool', compact('etapes','coachs'));
         }
         return redirect()->back();
     }
@@ -161,7 +161,7 @@ class SeanceController extends Controller
             $coach_week->save();
         }
 
-        return redirect()->route('event.index')->with('success', 'Nouvelle type de formation créée ');
+        return redirect()->route('seance.index')->with('success', 'Nouvelle type de formation créée ');
 
     }
 
@@ -171,7 +171,7 @@ class SeanceController extends Controller
         $etapes = Etape::where('evenement_id',$evenementType->evenement->id )->get();
         $coachs = User::all()->where('role_id', 5);
 
-        return view('suivi::back.event.createSeance', compact('evenementType', 'etapes', 'coachs'));
+        return view('suivi::back.seance.createSeance', compact('evenementType', 'etapes', 'coachs'));
     }
 
     public function storeSeance(Request $request)
@@ -207,14 +207,14 @@ class SeanceController extends Controller
             $coach_week->seance_id = $seance->id;
             $coach_week->save();
         }
-        return redirect()->route('event.index')->with('success', 'Nouvelle séance créée');
+        return redirect()->route('seance.index')->with('success', 'Nouvelle séance créée');
 
     }
     public function editSeance(Seance $id)
     {
         $etapes = Etape::where('evenement_id', 1)->get();
         $seance = $id;
-        return view('suivi::back.event.editSeance', compact('etapes', 'seance'));
+        return view('suivi::back.seance.editSeance', compact('etapes', 'seance'));
     }
 
     public function updateSeance(Request $request, Seance $id)
@@ -242,7 +242,7 @@ class SeanceController extends Controller
         $seance->evenement_type_id = $request->evenement;
         $seance->etape_id = $request->etape;
         $seance->save();
-        return redirect()->route('event.index');
+        return redirect()->route('seance.index');
 
     }
 
@@ -259,48 +259,14 @@ class SeanceController extends Controller
         $seance = $id;
         $seances = Seance::all()->where('etape_id', 3);
         $seance_user = SeanceCandidat::all()->where('seance_id', $seance->id);
-        return view('suivi::back.event.listeCandidat',compact('seance','seance_user','seances'));
+        return view('suivi::back.seance.listeCandidat',compact('seance','seance_user','seances'));
     }
 
-
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
+    public function destroy_evenementtype(EvenementType $id)
     {
-        return view('suivi::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('suivi::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
+        $et = $id;
+        $et->delete();
+        return redirect()->route('seance.index');
+        
     }
 }

@@ -6,7 +6,7 @@
         <h3 class="text-xl">Etape 1</h3>
         <div class="w-full bg-white lg:ml-4 ">
             <div class="rounded p-6">
-                <form action="{{route('event.secondStep')}}" method="get">
+                <form action="{{route('seance.secondStep')}}" method="get">
                     @csrf
                     {{-- nom --}}
                     <div class="w-full sm:w-2/4 sm:pr-5 ">

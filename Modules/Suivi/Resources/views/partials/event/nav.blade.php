@@ -3,21 +3,21 @@
         @if ($view ==='all')
             <button class="text-right bg-white text-white font-bold rounded border-b-2 border-purple-600 bg-purple-500 shadow-md py-2 px-6 inline-flex items-center">All</button>
         @else
-            <a href="{{ route('event.index') }}"><button class="text-rigth bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-500 hover:bg-green-400 hover:text-white shadow-md py-2 px-6 inline-flex items-center">All</button></a>
+            <a href="{{ route('seance.index') }}"><button class="text-rigth bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-500 hover:bg-green-400 hover:text-white shadow-md py-2 px-6 inline-flex items-center">All</button></a>
         @endif
         @foreach ($type_event as $item)
             @isset($item)
                 @if ($view == $item->id)
                 <button class="text-right bg-white text-white font-bold rounded border-b-2 border-purple-600 bg-purple-500 shadow-md py-2 px-6 inline-flex items-center">{{ ucfirst($item->nom) }}</button>
                 @else
-                    <a href="{{ route('event.index_tri',$item->id) }}"><button class="text-rigth bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-500 hover:bg-green-400 hover:text-white shadow-md py-2 px-6 inline-flex items-center">{{ ucfirst($item->nom) }}</button></a>
+                    <a href="{{ route('seance.index_tri',$item->id) }}"><button class="text-rigth bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-500 hover:bg-green-400 hover:text-white shadow-md py-2 px-6 inline-flex items-center">{{ ucfirst($item->nom) }}</button></a>
                 @endif
             @endisset
         @endforeach
-            <a href="" class="bg-green-600 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-red-700">
+            <a href="{{route('seance.create')}}" class="bg-green-600 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-red-700">
                 <i class="fas fa-plus"></i> Nouvel événement
             </a>
-            <a href="{{route('event.archive')}}" class="bg-indigo-600 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-red-700">
+            <a href="{{route('seance.archive')}}" class="bg-indigo-600 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-red-700">
                 Archives
             </a>
     </div>
@@ -27,16 +27,16 @@
         @if ($view ==='all')
             <button class="text-right bg-white text-white font-bold rounded border-b-2 border-purple-600 bg-purple-500 shadow-md py-2 px-6 inline-flex items-center">All</button>
         @else
-            <a href="{{route('event.archive')}}"><button class="text-rigth bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-500 hover:bg-green-400 hover:text-white shadow-md py-2 px-6 inline-flex items-center">All</button></a>
+            <a href="{{route('seance.archive')}}"><button class="text-rigth bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-500 hover:bg-green-400 hover:text-white shadow-md py-2 px-6 inline-flex items-center">All</button></a>
         @endif
         @foreach ($type_event as $item)
                 @if ($view == $item->id)
                     <button class="text-right bg-white text-white font-bold rounded border-b-2 border-purple-600 bg-purple-500 shadow-md py-2 px-6 inline-flex items-center">{{ ucfirst($item->nom) }}</button>
                 @else
-                    <a href="{{route('event.archive_tri', $item->id)}}"></button></a>
+                    <a href="{{route('seance.archive_tri', $item->id)}}"></button></a>
                 @endif
         @endforeach
-        <a href="{{route('event.index')}}" class="bg-green-600 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-red-700">
+        <a href="{{route('seance.index')}}" class="bg-green-600 text-white font-bold px-4 py-2 text-sm uppercase rounded tracking-wider focus:outline-none hover:bg-red-700">
             <i class="fas fa-clock"></i> En cours
         </a>
     </div>

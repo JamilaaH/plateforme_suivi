@@ -6,7 +6,7 @@
         <h3 class="text-xl">Etape 2</h3>
         <div class="w-full bg-white lg:ml-4 ">
             <div class="rounded p-6">
-                <form action="{{ route('event.store') }}" method="POST">
+                <form action="{{ route('seance.store') }}" method="POST">
                     @csrf
                     {{-- nom --}}
                     <input type="number" name="evenement" id="evenement" hidden

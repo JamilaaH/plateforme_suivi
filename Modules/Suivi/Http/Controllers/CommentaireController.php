@@ -5,39 +5,29 @@ namespace Modules\Suivi\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Modules\Suivi\Entities\Candidat;
-use Modules\Suivi\Entities\Seance;
+use Modules\Suivi\Entities\Commentaire;
 
-class SuiviController extends Controller
+class CommentaireController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
-    public function index()
-    {
-        $seances = Seance::where('etat', 1)->get()->count();
-        $candidats = Candidat::all()->count();
-        return view('suivi::dashboard', compact('seances', 'candidats'));
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('suivi::create');
-    }
 
     /**
      * Store a newly created resource in storage.
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(Request $request, Candidat $candidat)
     {
-        //
+        $commentaire =  new  Commentaire();
+        $commentaire->auteur_id = Auth::user()->id;
+        $commentaire->candidat_id = $candidat->id;
+        $commentaire->sujet = $request->sujet;
+        $commentaire->contenu = $request->contenu;
+        $commentaire->created_at = now();
+        $commentaire->save();
+        return redirect()->back();
     }
 
     /**
@@ -76,8 +66,9 @@ class SuiviController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Commentaire $commentaire)
     {
-        //
+        $commentaire->delete();
+        return redirect()->back();
     }
 }
